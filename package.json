@@ -56,25 +56,28 @@
 		"lib/"
 	],
 	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
 	},
 	"lint-staged": {
 		"*.js": [
-			"yarn lint:js",
-			"yarn format",
+			"npm run lint:js",
+			"npm run format",
 			"git add"
 		],
 		"*.css": [
-			"yarn lint:css",
-			"yarn format",
+			"npm run lint:css",
+			"npm run format",
 			"git add"
 		],
 		"*.scss": [
-			"yarn lint:scss",
-			"yarn format",
+			"npm run lint:scss",
+			"npm run format",
 			"git add"
 		],
 		"*.{json,md,yml}": [
-			"yarn format",
+			"npm run format",
 			"git add"
 		]
 	}
