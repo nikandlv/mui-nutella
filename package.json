@@ -16,6 +16,9 @@
 		"lint:scss": "stylelint --fix --syntax scss"
 	},
 	"dependencies": {
+		"@material-ui/core": "^4.3.2",
+		"@material-ui/icons": "^4.2.1",
+		"@material-ui/styles": "^4.3.0",
 		"prop-types": "^15.6.2"
 	},
 	"peerDependencies": {
@@ -53,9 +56,6 @@
 		"lib/"
 	],
 	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
 	},
 	"lint-staged": {
 		"*.js": [
