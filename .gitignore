@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+
+# Node
+node_modules/
+
+# Storybook
+.cache/
+dist/
+
+# Rollup
+lib/
