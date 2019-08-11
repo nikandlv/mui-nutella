@@ -16,7 +16,11 @@
 		"lint:scss": "stylelint --fix --syntax scss"
 	},
 	"dependencies": {
-		"prop-types": "^15.6.2"
+		"@material-ui/core": "^4.3.2",
+		"@material-ui/icons": "^4.2.1",
+		"@material-ui/styles": "^4.3.0",
+		"prop-types": "^15.6.2",
+		"react-mui-android-notification": "^2.0.1"
 	},
 	"peerDependencies": {
 		"react": "^16.0.0"
@@ -59,22 +63,22 @@
 	},
 	"lint-staged": {
 		"*.js": [
-			"yarn lint:js",
-			"yarn format",
+			"npm run lint:js",
+			"npm run format",
 			"git add"
 		],
 		"*.css": [
-			"yarn lint:css",
-			"yarn format",
+			"npm run lint:css",
+			"npm run format",
 			"git add"
 		],
 		"*.scss": [
-			"yarn lint:scss",
-			"yarn format",
+			"npm run lint:scss",
+			"npm run format",
 			"git add"
 		],
 		"*.{json,md,yml}": [
-			"yarn format",
+			"npm run format",
 			"git add"
 		]
 	}
