@@ -19,13 +19,13 @@ const Nutella = [
 ];
 
 function NutellaSection(props) {
-	const { position } = this.props;
-	const items = Nutella.filter(item => item.position === position);
+	const items = Nutella.filter(item => item.position === props.position);
 	return (
 		<div className={props.position}>
-			{items.map((item, key) => (
-				<AndroidNotification {...item} key={key} />
-			))}
+			{items.map((item, key) => {
+				console.log(item);
+				return <AndroidNotification {...item.data} key={key} />;
+			})}
 		</div>
 	);
 }
