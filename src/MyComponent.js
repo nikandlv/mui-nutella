@@ -3,23 +3,24 @@ import Button from "@material-ui/core/Button";
 import Nutella from "./Nutella";
 import Whatshot from "@material-ui/icons/Whatshot";
 import {
-	Select,
-	MenuItem,
 	Checkbox,
 	TextField,
-	FormControl,
-	InputLabel,
 	OutlinedInput,
 	FormControlLabel,
 	Grid,
+	Tabs,
+	Tab,
+	Paper,
+	Card,
+	CardContent,
+	Typography,
 } from "@material-ui/core";
-let counter = 0;
 export default class MyComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			type: "top-right",
-			name: "Android Notification " + counter,
+			name: "Android Notification ",
 			icon: <Whatshot />,
 			date: "Nov 6",
 			accent: "rgb(63, 81, 181)",
@@ -37,100 +38,104 @@ export default class MyComponent extends React.Component {
 		this.push = this.push.bind(this);
 	}
 	push() {
-		counter++;
 		Nutella.push(this.state.type, this.state, [<Button>Inject test!</Button>], this.state.config);
 	}
 
-	setType(type) {
+	setType(event, type) {
 		this.setState({
-			type: type.target.value,
+			type,
 		});
 	}
 
 	render() {
 		const { type, config, title, body, date } = this.state;
+		const tabsStyle = {
+			borderRadius: "100px",
+			overflow: "hidden",
+		};
 		return (
-			<div
-				style={{
-					display: "block",
-					margin: "0 auto",
-					maxWidth: "50%",
-					padding: "10rem 0",
-				}}
-			>
-				<Grid container spacing={2}>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Title"
-							fullWidth
-							variant="outlined"
-							value={title}
-							onChange={event => this.setState({ title: event.currentTarget.value })}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Date"
-							fullWidth
-							variant="outlined"
-							value={date}
-							onChange={event => this.setState({ date: event.currentTarget.value })}
-						/>
-					</Grid>
+			<Grid container justify="center">
+				<Grid item xs={12}>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
 				</Grid>
-				<br />
-				<br />
-				<TextField
-					label="Body"
-					fullWidth
-					variant="outlined"
-					value={body}
-					onChange={event => this.setState({ body: event.currentTarget.value })}
-				/>
-				<br />
-				<br />
+				<Grid item xs={11} md={7}>
+					<Card>
+						<CardContent>
+							<Typography variant="h4">Notification builder</Typography>
+							<br />
+							<br />
+							<Grid container spacing={2}>
+								<Grid item xs={12} md={6}>
+									<TextField
+										label="Title"
+										fullWidth
+										variant="outlined"
+										value={title}
+										onChange={event => this.setState({ title: event.currentTarget.value })}
+									/>
+								</Grid>
+								<Grid item xs={12} md={6}>
+									<TextField
+										label="Date"
+										fullWidth
+										variant="outlined"
+										value={date}
+										onChange={event => this.setState({ date: event.currentTarget.value })}
+									/>
+								</Grid>
+							</Grid>
+							<br />
+							<br />
+							<TextField
+								label="Body"
+								fullWidth
+								variant="outlined"
+								value={body}
+								onChange={event => this.setState({ body: event.currentTarget.value })}
+							/>
+							<br />
+							<br />
 
-				<FormControl variant="outlined" fullWidth>
-					<InputLabel htmlFor="outlined-age-simple">Position</InputLabel>
-					<Select
-						input={<OutlinedInput labelWidth={60} />}
-						fullWidth
-						outlined
-						variant="outlined"
-						label="Test"
-						value={type}
-						onChange={this.setType}
-					>
-						<MenuItem value="top-right">Top Right</MenuItem>
-						<MenuItem value="top-left">Top Left</MenuItem>
-						<MenuItem value="bottom-right">Bottom Right</MenuItem>
-						<MenuItem value="bottom-left">Bottom Left</MenuItem>
-					</Select>
-				</FormControl>
-				<br />
-				<br />
-				<FormControlLabel
-					control={
-						<Checkbox
-							color="primary"
-							checked={config.persistent}
-							onChange={() => {
-								this.setState({
-									config: { ...config, persistent: !config.persistent },
-								});
-							}}
-						/>
-					}
-					label="Persistent"
-				/>
+							<Paper style={tabsStyle}>
+								<Tabs value={type} color="primary" onChange={this.setType}>
+									<Tab label="Top Right" value="top-right" />
+									<Tab label="Top Left" value="top-left" />
+									<Tab label="Bottom Right" value="bottom-right" />
+									<Tab label="Bottom Left" value="bottom-left" />
+								</Tabs>
+							</Paper>
+							<br />
+							<br />
+							<FormControlLabel
+								control={
+									<Checkbox
+										color="primary"
+										checked={config.persistent}
+										onChange={() => {
+											this.setState({
+												config: { ...config, persistent: !config.persistent },
+											});
+										}}
+									/>
+								}
+								label="Persistent"
+							/>
 
-				<br />
-				<br />
-				<Button variant="contained" color="primary" onClick={this.push}>
-					Push
-				</Button>
+							<br />
+							<br />
+							<Button variant="contained" color="primary" onClick={this.push}>
+								Push
+							</Button>
+						</CardContent>
+					</Card>
+				</Grid>
 				<Nutella.View />
-			</div>
+			</Grid>
 		);
 	}
 }
