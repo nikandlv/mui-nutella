@@ -15,6 +15,7 @@ const useStyles = makeStyles({
 		padding: "1rem",
 		transition: "all 1s",
 		overflow: "hidden",
+		zIndex: 2000,
 		"&.top-right": {
 			right: 0,
 			top: 0,
