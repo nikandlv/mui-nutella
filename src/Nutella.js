@@ -25,9 +25,6 @@ const useStyles = makeStyles({
 			bottom: 0,
 		},
 	},
-	notification: {
-		transition: "all 1s",
-	},
 });
 
 const duration = 300;
@@ -44,13 +41,19 @@ const transitionStyles = {
 	exited: { maxHeight: 0, opacity: 0 },
 };
 
-const FadeTransition = ({ children, in: inProp }) => (
+const variants = {
+	pie: { margin: "0.2rem 0rem" },
+	oreo: { margin: "0rem 0rem" },
+};
+
+const FadeTransition = ({ children, in: inProp, variant }) => (
 	<Transition in={inProp} timeout={duration} unmountOnExit={true} mountOnEnter={true}>
 		{state => (
 			<div
 				style={{
 					...defaultStyle,
 					...transitionStyles[state],
+					...variants[variant],
 				}}
 			>
 				{children}
@@ -65,7 +68,7 @@ function NutellaSection(props) {
 	return (
 		<TransitionGroup className={`${styles.wrapper} ${props.position}`}>
 			{items.map((item, key) => (
-				<FadeTransition key={key} className={styles.notification}>
+				<FadeTransition key={key} variant={item.data.variant} className={styles.notification}>
 					<AndroidNotification className="test" {...item.data}>
 						{item.actions.map((action, key) => (
 							<React.Fragment key={key}>{action}</React.Fragment>
