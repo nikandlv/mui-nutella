@@ -88,7 +88,7 @@ export default class MyComponent extends React.Component {
 	}
 
 	render() {
-		const { type, config, title, body, date, accent, rounded, variant } = this.state;
+		const { type, config, name, title, body, date, accent, rounded, variant } = this.state;
 		const tabsStyle = {
 			borderRadius: "100px",
 			overflow: "hidden",
@@ -112,6 +112,17 @@ export default class MyComponent extends React.Component {
 						<AndroidNotification {...this.state} />
 						<CardContent>
 							<Typography variant="h4">Notification builder</Typography>
+							<br />
+							<br />
+							<br />
+							<br />
+							<TextField
+								label="Application/Service name"
+								fullWidth
+								variant="outlined"
+								value={name}
+								onChange={event => this.setState({ name: event.currentTarget.value })}
+							/>
 							<br />
 							<br />
 							<Grid container spacing={2}>
