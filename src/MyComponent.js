@@ -40,6 +40,7 @@ export default class MyComponent extends React.Component {
 
 		this.setType = this.setType.bind(this);
 		this.push = this.push.bind(this);
+		this.setVariant = this.setVariant.bind(this);
 	}
 	push() {
 		counter++;
@@ -65,9 +66,14 @@ export default class MyComponent extends React.Component {
 			type,
 		});
 	}
+	setVariant(event, variant) {
+		this.setState({
+			variant,
+		});
+	}
 
 	render() {
-		const { type, config, title, body, date, accent } = this.state;
+		const { type, config, title, body, date, accent, rounded, variant } = this.state;
 		const tabsStyle = {
 			borderRadius: "100px",
 			overflow: "hidden",
@@ -124,7 +130,8 @@ export default class MyComponent extends React.Component {
 							/>
 							<br />
 							<br />
-
+							<Typography variant="h6">Position</Typography>
+							<br />
 							<Paper style={tabsStyle}>
 								<Tabs
 									value={type}
@@ -140,6 +147,14 @@ export default class MyComponent extends React.Component {
 								</Tabs>
 							</Paper>
 							<br />
+							<Typography variant="h6">Style</Typography>
+							<br />
+							<Paper style={tabsStyle}>
+								<Tabs value={variant} color="primary" onChange={this.setVariant} centered>
+									<Tab label="Nougat/Oreo" value="oreo" />
+									<Tab label="Pie" value="pie" />
+								</Tabs>
+							</Paper>
 							<br />
 							<FormControlLabel
 								control={
@@ -155,6 +170,23 @@ export default class MyComponent extends React.Component {
 								}
 								label="Persistent"
 							/>
+							<br />
+							<FormControlLabel
+								control={
+									<Checkbox
+										color="primary"
+										checked={rounded}
+										onChange={() => {
+											this.setState({
+												rounded: !rounded,
+											});
+										}}
+									/>
+								}
+								label="Rounded"
+							/>
+							<br />
+							<br />
 							<Typography variant="h6">Accent color</Typography>
 							<br />
 							<br />
@@ -182,6 +214,17 @@ export default class MyComponent extends React.Component {
 										onClick={this.clearPersistent}
 									>
 										Clear persistent
+									</Button>
+								</Grid>
+								<Grid item xs={12}>
+									<Button
+										fullWidth
+										variant="text"
+										onClick={() => {
+											console.log(this.state);
+										}}
+									>
+										Print to console
 									</Button>
 								</Grid>
 							</Grid>
