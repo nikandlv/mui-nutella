@@ -107,7 +107,7 @@ const Interface = {
 		if (typeof config === "undefined") {
 			config = {
 				persistent: false,
-				timeOut: 10000,
+				timeOut: 5000,
 			};
 		}
 		if (!config.persistent) {
