@@ -16,12 +16,22 @@ const useStyles = makeStyles({
 		padding: "1rem",
 		transition: "all 1s",
 		overflow: "hidden",
-		"&.top-left": {
-			left: 0,
+		"&.top-right": {
+			right: 0,
 			top: 0,
+			flexDirection: "column-reverse",
 		},
 		"&.bottom-right": {
 			right: 0,
+			bottom: 0,
+		},
+		"&.top-left": {
+			left: 0,
+			top: 0,
+			flexDirection: "column-reverse",
+		},
+		"&.bottom-left": {
+			left: 0,
 			bottom: 0,
 		},
 	},
