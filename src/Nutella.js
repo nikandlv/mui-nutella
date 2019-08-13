@@ -41,6 +41,7 @@ const defaultStyle = {
 const transitionStyles = {
 	entering: { maxHeight: 0, opacity: 0 },
 	entered: { maxHeight: "200px", opacity: 1 },
+	exited: { maxHeight: 0, opacity: 0 },
 };
 
 const FadeTransition = ({ children, in: inProp }) => (
@@ -95,12 +96,33 @@ class View extends React.Component {
 }
 
 const Interface = {
-	push: (position, data, actions) => {
+	push: (position, data, actions, config) => {
 		Nutella.push({
 			position,
 			data,
 			actions,
 		});
+		let index = Nutella.length - 1;
+		Update();
+		if (typeof config === "undefined") {
+			config = {
+				persistent: false,
+				timeOut: 10000,
+			};
+		}
+		if (!config.persistent) {
+			window.setTimeout(() => {
+				delete Nutella[index];
+				Update();
+			}, config.timeOut);
+		}
+		return index;
+	},
+	dismiss: index => {
+		if (typeof Nutella[index] === "undefined") {
+			return;
+		}
+		delete Nutella[index];
 		Update();
 	},
 };
