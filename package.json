@@ -20,7 +20,8 @@
 		"@material-ui/icons": "^4.2.1",
 		"@material-ui/styles": "^4.3.0",
 		"prop-types": "^15.6.2",
-		"react-mui-android-notification": "^2.0.1"
+		"react-mui-android-notification": "^2.0.1",
+		"react-transition-group": "^4.2.2"
 	},
 	"peerDependencies": {
 		"react": "^16.0.0"
