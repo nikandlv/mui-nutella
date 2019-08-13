@@ -63,17 +63,14 @@
 	},
 	"lint-staged": {
 		"*.js": [
-			"npm run lint:js",
 			"npm run format",
 			"git add"
 		],
 		"*.css": [
-			"npm run lint:css",
 			"npm run format",
 			"git add"
 		],
 		"*.scss": [
-			"npm run lint:scss",
 			"npm run format",
 			"git add"
 		],
