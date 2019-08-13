@@ -15,6 +15,10 @@ import {
 	CardContent,
 	Typography,
 } from "@material-ui/core";
+import { CirclePicker } from "react-color";
+import AndroidNotification from "react-mui-android-notification";
+let cache = [];
+let counter = 0;
 export default class MyComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -38,7 +42,22 @@ export default class MyComponent extends React.Component {
 		this.push = this.push.bind(this);
 	}
 	push() {
-		Nutella.push(this.state.type, this.state, [<Button>Inject test!</Button>], this.state.config);
+		counter++;
+		cache.push(
+			Nutella.push(
+				"key-" + counter,
+				this.state.type,
+				this.state,
+				[<Button>Inject test!</Button>],
+				this.state.config,
+			),
+		);
+	}
+
+	clearPersistent() {
+		cache.forEach(persistent => {
+			Nutella.dismiss(persistent);
+		});
 	}
 
 	setType(event, type) {
@@ -48,10 +67,14 @@ export default class MyComponent extends React.Component {
 	}
 
 	render() {
-		const { type, config, title, body, date } = this.state;
+		const { type, config, title, body, date, accent } = this.state;
 		const tabsStyle = {
 			borderRadius: "100px",
 			overflow: "hidden",
+		};
+		const colorPickerWrapper = {
+			display: "flex",
+			justifyContent: "center",
 		};
 		return (
 			<Grid container justify="center">
@@ -63,8 +86,9 @@ export default class MyComponent extends React.Component {
 					<br />
 					<br />
 				</Grid>
-				<Grid item xs={11} md={7}>
+				<Grid item xs={11} sm={7} md={5} lg={4}>
 					<Card>
+						<AndroidNotification {...this.state} />
 						<CardContent>
 							<Typography variant="h4">Notification builder</Typography>
 							<br />
@@ -102,7 +126,13 @@ export default class MyComponent extends React.Component {
 							<br />
 
 							<Paper style={tabsStyle}>
-								<Tabs value={type} color="primary" onChange={this.setType}>
+								<Tabs
+									value={type}
+									color="primary"
+									onChange={this.setType}
+									variant="scrollable"
+									scrollButtons="auto"
+								>
 									<Tab label="Top Right" value="top-right" />
 									<Tab label="Top Left" value="top-left" />
 									<Tab label="Bottom Right" value="bottom-right" />
@@ -125,12 +155,36 @@ export default class MyComponent extends React.Component {
 								}
 								label="Persistent"
 							/>
-
+							<Typography variant="h6">Accent color</Typography>
 							<br />
 							<br />
-							<Button variant="contained" color="primary" onClick={this.push}>
-								Push
-							</Button>
+							<div style={colorPickerWrapper}>
+								<CirclePicker
+									color={accent}
+									onChangeComplete={color => {
+										this.setState({ accent: color.hex });
+									}}
+								/>
+							</div>
+							<br />
+							<br />
+							<Grid container spacing={2}>
+								<Grid item xs={12} sm={6}>
+									<Button fullWidth variant="outlined" color="primary" onClick={this.push}>
+										Push
+									</Button>
+								</Grid>
+								<Grid item xs={12} sm={6}>
+									<Button
+										fullWidth
+										variant="outlined"
+										color="secondary"
+										onClick={this.clearPersistent}
+									>
+										Clear persistent
+									</Button>
+								</Grid>
+							</Grid>
 						</CardContent>
 					</Card>
 				</Grid>

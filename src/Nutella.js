@@ -1,10 +1,9 @@
 import React from "react";
 import AndroidNotification from "react-mui-android-notification";
-import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { TransitionGroup, Transition } from "react-transition-group";
 
-const Nutella = [];
+const Nutella = {};
 let Update = () => [console.log("Nutella is not ready yet")];
 
 const useStyles = makeStyles({
@@ -12,7 +11,7 @@ const useStyles = makeStyles({
 		display: "flex",
 		flexDirection: "column",
 		width: 380,
-		position: "absolute",
+		position: "fixed",
 		padding: "1rem",
 		transition: "all 1s",
 		overflow: "hidden",
@@ -74,18 +73,22 @@ const FadeTransition = ({ children, in: inProp, variant }) => (
 
 function NutellaSection(props) {
 	const styles = useStyles();
-	const items = Nutella.filter(item => item.position === props.position);
+	const items = Object.keys(Nutella).filter(key => Nutella[key].position === props.position);
+
 	return (
 		<TransitionGroup className={`${styles.wrapper} ${props.position}`}>
-			{items.map((item, key) => (
-				<FadeTransition key={key} variant={item.data.variant} className={styles.notification}>
-					<AndroidNotification className="test" {...item.data}>
-						{item.actions.map((action, key) => (
-							<React.Fragment key={key}>{action}</React.Fragment>
-						))}
-					</AndroidNotification>
-				</FadeTransition>
-			))}
+			{items.map(index => {
+				let item = Nutella[index];
+				return (
+					<FadeTransition key={index} variant={item.data.variant} className={styles.notification}>
+						<AndroidNotification className="test" {...item.data}>
+							{item.actions.map((action, key) => (
+								<React.Fragment key={key}>{action}</React.Fragment>
+							))}
+						</AndroidNotification>
+					</FadeTransition>
+				);
+			})}
 		</TransitionGroup>
 	);
 }
@@ -109,13 +112,12 @@ class View extends React.Component {
 }
 
 const Interface = {
-	push: (position, data, actions, config) => {
-		Nutella.push({
+	push: (index, position, data, actions, config) => {
+		Nutella[index] = {
 			position,
 			data,
 			actions,
-		});
-		let index = Nutella.length - 1;
+		};
 		Update();
 		if (typeof config === "undefined") {
 			config = {
