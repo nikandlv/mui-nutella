@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import Nutella from "./Nutella";
 import Whatshot from "@material-ui/icons/Whatshot";
+import Message from "@material-ui/icons/Message";
 import {
 	Checkbox,
 	TextField,
@@ -19,6 +20,7 @@ import { CirclePicker } from "react-color";
 import AndroidNotification from "react-mui-android-notification";
 let cache = [];
 let counter = 0;
+let iconCache = "whatshot";
 export default class MyComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -41,6 +43,7 @@ export default class MyComponent extends React.Component {
 		this.setType = this.setType.bind(this);
 		this.push = this.push.bind(this);
 		this.setVariant = this.setVariant.bind(this);
+		this.setIcon = this.setIcon.bind(this);
 	}
 	push() {
 		counter++;
@@ -70,6 +73,18 @@ export default class MyComponent extends React.Component {
 		this.setState({
 			variant,
 		});
+	}
+	setIcon(event, tab) {
+		iconCache = tab;
+		if (tab === "whatshot") {
+			this.setState({
+				icon: <Whatshot />,
+			});
+		} else {
+			this.setState({
+				icon: <Message />,
+			});
+		}
 	}
 
 	render() {
@@ -153,6 +168,15 @@ export default class MyComponent extends React.Component {
 								<Tabs value={variant} color="primary" onChange={this.setVariant} centered>
 									<Tab label="Nougat/Oreo" value="oreo" />
 									<Tab label="Pie" value="pie" />
+								</Tabs>
+							</Paper>
+							<br />
+							<Typography variant="h6">Icon</Typography>
+							<br />
+							<Paper style={tabsStyle}>
+								<Tabs value={iconCache} color="primary" onChange={this.setIcon} centered>
+									<Tab icon={<Whatshot />} value="whatshot" />
+									<Tab icon={<Message />} value="message" />
 								</Tabs>
 							</Paper>
 							<br />
