@@ -30,7 +30,7 @@ function Wrapper() {
 }
 ```
 
-## Use it
+## Push it
 
 ```javascript
 const config = {};
@@ -38,7 +38,15 @@ const actions = [<Button>My Button!</Button>];
 const notification = {};
 const position = "top-left";
 
-function test() {
+function pushMe() {
   Nutella.push("my-notification-key", type, notification, actions, config);
+}
+```
+
+## Dismiss it
+
+```javascript
+function goAway() {
+  Nutella.dismiss("my-notification-key");
 }
 ```
