@@ -6,18 +6,21 @@ With nutella you can have awesome notification without wasting your time. its tr
 
 ![Nutella boi](./icon.png)
 
-## Installation
+## Install it
 
 ```console
 nikandlv@nikandlv.ir:~$ npm i mui-nutella
 ```
 
-## Setup
+## Import it
 
 ```javascript
-// import it
 import Nutella from "mui-nutella";
+```
 
+## Use it
+
+```javascript
 // Add it to your wrapper
 function Wrapper() {
   return (
