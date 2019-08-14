@@ -1,12 +1,10 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import Nutella from "./Nutella";
 import Whatshot from "@material-ui/icons/Whatshot";
 import Message from "@material-ui/icons/Message";
 import {
 	Checkbox,
 	TextField,
-	OutlinedInput,
 	FormControlLabel,
 	Grid,
 	Tabs,
@@ -19,7 +17,9 @@ import {
 } from "@material-ui/core";
 import { CirclePicker } from "react-color";
 import AndroidNotification from "react-mui-android-notification";
-let cache = [];
+import Nutella from "./Nutella";
+
+const cache = [];
 let counter = 0;
 let iconCache = "whatshot";
 export default class MyComponent extends React.Component {
@@ -47,24 +47,6 @@ export default class MyComponent extends React.Component {
 		this.setVariant = this.setVariant.bind(this);
 		this.setIcon = this.setIcon.bind(this);
 	}
-	push() {
-		counter++;
-		cache.push(
-			Nutella.push(
-				"key-" + counter,
-				this.state.type,
-				this.state,
-				[<Button>Inject test!</Button>],
-				this.state.config,
-			),
-		);
-	}
-
-	clear() {
-		cache.forEach(persistent => {
-			Nutella.dismiss(persistent);
-		});
-	}
 
 	setType(event, type) {
 		this.setState({
@@ -77,6 +59,7 @@ export default class MyComponent extends React.Component {
 			variant,
 		});
 	}
+
 	setIcon(event, tab) {
 		iconCache = tab;
 		if (tab === "whatshot") {
@@ -88,6 +71,20 @@ export default class MyComponent extends React.Component {
 				icon: <Message />,
 			});
 		}
+	}
+
+	clear() {
+		this.cache.forEach(persistent => {
+			Nutella.dismiss(persistent);
+		});
+	}
+
+	push() {
+		counter += 1;
+		const { type, config } = this.state;
+		cache.push(
+			Nutella.push(`key-${counter}`, type, this.state, [<Button>Inject test!</Button>], config),
+		);
 	}
 
 	render() {
