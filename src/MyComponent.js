@@ -15,6 +15,7 @@ import {
 	Card,
 	CardContent,
 	Typography,
+	Slider,
 } from "@material-ui/core";
 import { CirclePicker } from "react-color";
 import AndroidNotification from "react-mui-android-notification";
@@ -110,6 +111,14 @@ export default class MyComponent extends React.Component {
 			display: "flex",
 			justifyContent: "center",
 		};
+		const cardStyles = {
+			overflowY: "scroll",
+			maxHeight: "50vh",
+		};
+		const notification = {
+			zIndex: 2000,
+			position: "relative",
+		};
 		return (
 			<Grid container justify="center">
 				<Grid item xs={12}>
@@ -122,11 +131,13 @@ export default class MyComponent extends React.Component {
 				</Grid>
 				<Grid item xs={11} sm={7} md={5} lg={4}>
 					<Card>
-						<AndroidNotification {...this.state} />
-						<CardContent>
+						<div style={notification}>
+							<AndroidNotification {...this.state} />
+						</div>
+						<CardContent style={cardStyles}>
+							<br />
+							<br />
 							<Typography variant="h4">Notification builder</Typography>
-							<br />
-							<br />
 							<br />
 							<br />
 							<TextField
@@ -261,8 +272,24 @@ export default class MyComponent extends React.Component {
 									}}
 								/>
 							</div>
-							<br />
-							<br />
+							<CardContent>
+								<Typography variant="h6">Duration</Typography>
+								<br />
+								<br />
+								<Slider
+									defaultValue={config.timeOut / 1000}
+									valueLabelDisplay="auto"
+									step={1}
+									marks
+									min={1}
+									max={10}
+									onChange={(_, value) => {
+										this.setState({
+											config: { ...config, timeOut: value * 1000 },
+										});
+									}}
+								/>
+							</CardContent>
 							<Grid container spacing={2}>
 								<Grid item xs={12} sm={6}>
 									<Button fullWidth variant="outlined" color="primary" onClick={this.push}>
