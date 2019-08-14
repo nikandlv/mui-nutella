@@ -34,6 +34,7 @@ export default class MyComponent extends React.Component {
 			body: "this is an awesome notification !",
 			rounded: false,
 			variant: "oreo",
+			absolute: false,
 			config: {
 				persistent: false,
 				timeOut: 5000,
@@ -58,7 +59,7 @@ export default class MyComponent extends React.Component {
 		);
 	}
 
-	clearPersistent() {
+	clear() {
 		cache.forEach(persistent => {
 			Nutella.dismiss(persistent);
 		});
@@ -69,6 +70,7 @@ export default class MyComponent extends React.Component {
 			type,
 		});
 	}
+
 	setVariant(event, variant) {
 		this.setState({
 			variant,
@@ -88,7 +90,18 @@ export default class MyComponent extends React.Component {
 	}
 
 	render() {
-		const { type, config, name, title, body, date, accent, rounded, variant } = this.state;
+		const {
+			type,
+			config,
+			name,
+			title,
+			body,
+			date,
+			accent,
+			rounded,
+			variant,
+			absolute,
+		} = this.state;
 		const tabsStyle = {
 			borderRadius: "100px",
 			overflow: "hidden",
@@ -195,6 +208,21 @@ export default class MyComponent extends React.Component {
 								control={
 									<Checkbox
 										color="primary"
+										checked={absolute}
+										onChange={() => {
+											this.setState({
+												absolute: !absolute,
+											});
+										}}
+									/>
+								}
+								label="Absolute"
+							/>
+							<br />
+							<FormControlLabel
+								control={
+									<Checkbox
+										color="primary"
 										checked={config.persistent}
 										onChange={() => {
 											this.setState({
@@ -242,13 +270,8 @@ export default class MyComponent extends React.Component {
 									</Button>
 								</Grid>
 								<Grid item xs={12} sm={6}>
-									<Button
-										fullWidth
-										variant="outlined"
-										color="secondary"
-										onClick={this.clearPersistent}
-									>
-										Clear persistent
+									<Button fullWidth variant="outlined" color="secondary" onClick={this.clear}>
+										Clear
 									</Button>
 								</Grid>
 								<Grid item xs={12}>
@@ -266,7 +289,7 @@ export default class MyComponent extends React.Component {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Nutella.View />
+				<Nutella.View variant={absolute ? "absolute" : "fixed"} />
 			</Grid>
 		);
 	}
