@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import { TransitionGroup, Transition } from "react-transition-group";
 
 const Nutella = {};
-let Update = () => [console.log("Nutella is not ready yet")];
+let Update = () => console.log("Nutella is not ready yet");
 
 const useStyles = makeStyles({
 	wrapper: {
@@ -16,6 +16,9 @@ const useStyles = makeStyles({
 		transition: "all 1s",
 		overflow: "hidden",
 		zIndex: 2000,
+		"&.absolute": {
+			position: "absolute",
+		},
 		"&.top-right": {
 			right: 0,
 			top: 0,
@@ -77,7 +80,7 @@ function NutellaSection(props) {
 	const items = Object.keys(Nutella).filter(key => Nutella[key].position === props.position);
 
 	return (
-		<TransitionGroup className={`${styles.wrapper} ${props.position}`}>
+		<TransitionGroup className={`${styles.wrapper} ${props.position} ${props.variant}`}>
 			{items.map(index => {
 				let item = Nutella[index];
 				return (
@@ -101,12 +104,13 @@ class View extends React.Component {
 		};
 	}
 	render() {
+		const variant = this.props.variant || "fixed";
 		return (
 			<React.Fragment>
-				<NutellaSection position="top-left" />
-				<NutellaSection position="bottom-left" />
-				<NutellaSection position="top-right" />
-				<NutellaSection position="bottom-right" />
+				<NutellaSection variant={variant} position="top-left" />
+				<NutellaSection variant={variant} position="bottom-left" />
+				<NutellaSection variant={variant} position="top-right" />
+				<NutellaSection variant={variant} position="bottom-right" />
 			</React.Fragment>
 		);
 	}
