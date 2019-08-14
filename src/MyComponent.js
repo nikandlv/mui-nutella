@@ -303,6 +303,7 @@ export default class MyComponent extends React.Component {
 										fullWidth
 										variant="text"
 										onClick={() => {
+											// eslint-disable-next-line no-console
 											console.log(this.state);
 										}}
 									>
