@@ -74,7 +74,7 @@ export default class MyComponent extends React.Component {
 	}
 
 	clear() {
-		this.cache.forEach(persistent => {
+		cache.forEach(persistent => {
 			Nutella.dismiss(persistent);
 		});
 	}

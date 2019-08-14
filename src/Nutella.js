@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import { TransitionGroup, Transition } from "react-transition-group";
 
 const Nutella = {};
+// eslint-disable-next-line no-console
 let Update = () => console.log("Nutella is not ready yet");
 
 const useStyles = makeStyles({
@@ -77,10 +78,11 @@ const FadeTransition = ({ children, in: inProp, variant }) => (
 
 function NutellaSection(props) {
 	const styles = useStyles();
-	const items = Object.keys(Nutella).filter(key => Nutella[key].position === props.position);
+	const { position, variant } = props;
+	const items = Object.keys(Nutella).filter(key => Nutella[key].position === position);
 
 	return (
-		<TransitionGroup className={`${styles.wrapper} ${props.position} ${props.variant}`}>
+		<TransitionGroup className={`${styles.wrapper} ${position} ${variant}`}>
 			{items.map(index => {
 				let item = Nutella[index];
 				return (
@@ -103,6 +105,7 @@ class View extends React.Component {
 			this.forceUpdate();
 		};
 	}
+
 	render() {
 		const variant = this.props.variant || "fixed";
 		return (
