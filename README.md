@@ -18,18 +18,21 @@ nikandlv@nikandlv.ir:~$ npm i mui-nutella
 import Nutella from "mui-nutella";
 ```
 
-## Use it
+## Wrap it
 
 ```javascript
-// Add it to your wrapper
 function Wrapper() {
   return (
     <div>
-      <Nutella.View variant={absolute ? "absolute" : "fixed"} />
+      <Nutella.View />
     </div>
   );
 }
+```
 
+## Use it
+
+```javascript
 const config = {};
 const actions = [<Button>My Button!</Button>];
 const notification = {};
