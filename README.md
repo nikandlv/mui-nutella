@@ -54,3 +54,28 @@ function goAway() {
   Nutella.dismiss("my-notification-key");
 }
 ```
+
+## Available Configuration
+
+```javascript
+const notification = {
+  name: "Android Notification",
+  icon: <Whatshot />,
+  date: "Nov 6",
+  accent: "rgb(63, 81, 181)",
+  title: "Awesome Notification",
+  body: "this is an awesome notification !",
+  rounded: false,
+  variant: "oreo",
+  expandable: true,
+  onClick: (expanded, setExpandMode) => {
+    setExpandMode(!expanded);
+  },
+};
+```
+
+`<Nutella.View />` also takes a `variant` props which by default is `fixed` and also can be `absolute` relative to the parent
+
+## Libraries
+
+Nutella uses [react-mui-android-notification](https://github.com/nikandlv/react-mui-android-notification)
