@@ -6,6 +6,10 @@ With nutella you can have awesome notification without wasting your time. its tr
 
 ![Nutella boi](./icon.png)
 
+## Demo
+
+#### [Demo and notification builder](http://nikandlv.github.io/mui-nutella)
+
 ## Install it
 
 ```console
