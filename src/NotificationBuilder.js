@@ -110,14 +110,14 @@ export default class NotificationBuilder extends React.Component {
 		};
 		const cardStyles = {
 			overflowY: "scroll",
-			maxHeight: "50vh",
+			maxHeight: "70vh",
 		};
 		const notification = {
 			zIndex: 2000,
 			position: "relative",
 		};
 		const gutter = {
-			height: "10vh",
+			height: "5vh",
 		};
 		return (
 			<Grid container justify="center">
