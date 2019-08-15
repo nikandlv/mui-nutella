@@ -1,5 +1,6 @@
 {
 	"name": "mui-nutella",
+	"version": "1.0.0",
 	"main": "lib/NotificationBuilder.js",
 	"module": "lib/NotificationBuilder.es.js",
 	"scripts": {
