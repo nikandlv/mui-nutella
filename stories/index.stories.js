@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import MyComponent from "../lib/MyComponent.es";
+import NotificationBuilder from "../lib/NotificationBuilder.es";
 
-storiesOf("MyComponent", module).add("Component with title", () => (
-	<MyComponent title="Hello World!" />
-));
+storiesOf("Demos", module)
+	.add("Notification Builder", () => <NotificationBuilder title="Hello World!" />)
+	.add("aNotification Builder", () => <div>test</div>);

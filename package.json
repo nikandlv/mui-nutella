@@ -1,7 +1,7 @@
 {
-	"name": "the-package-name",
-	"main": "lib/MyComponent.js",
-	"module": "lib/MyComponent.es.js",
+	"name": "mui-nutella",
+	"main": "lib/NotificationBuilder.js",
+	"module": "lib/NotificationBuilder.es.js",
 	"scripts": {
 		"start": "npm-run-all build:rollup --parallel start:*",
 		"start:rollup": "rollup --config --sourcemap --watch",
@@ -33,7 +33,7 @@
 		"@babel/preset-react": "^7.0.0",
 		"@samuelmeuli/eslint-config": "~1.1.0",
 		"@samuelmeuli/stylelint-config": "~1.0.0",
-		"@storybook/react": "^4.1.11",
+		"@storybook/react": "^5.1.9",
 		"autoprefixer": "^9.4.7",
 		"babel-loader": "^8.0.5",
 		"eslint": "^5.13.0",

@@ -22,7 +22,7 @@ import Nutella from "./Nutella";
 const cache = [];
 let counter = 0;
 let iconCache = "whatshot";
-export default class MyComponent extends React.Component {
+export default class NotificationBuilder extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -110,21 +110,19 @@ export default class MyComponent extends React.Component {
 		};
 		const cardStyles = {
 			overflowY: "scroll",
-			maxHeight: "50vh",
+			maxHeight: "70vh",
 		};
 		const notification = {
 			zIndex: 2000,
 			position: "relative",
 		};
+		const gutter = {
+			height: "5vh",
+		};
 		return (
 			<Grid container justify="center">
 				<Grid item xs={12}>
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
+					<div style={gutter}></div>
 				</Grid>
 				<Grid item xs={11} sm={7} md={5} lg={4}>
 					<Card>
