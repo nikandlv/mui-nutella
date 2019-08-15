@@ -116,15 +116,13 @@ export default class MyComponent extends React.Component {
 			zIndex: 2000,
 			position: "relative",
 		};
+		const gutter = {
+			height: "10vh",
+		};
 		return (
 			<Grid container justify="center">
 				<Grid item xs={12}>
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
+					<div style={gutter}></div>
 				</Grid>
 				<Grid item xs={11} sm={7} md={5} lg={4}>
 					<Card>
