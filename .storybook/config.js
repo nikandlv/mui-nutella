@@ -7,10 +7,7 @@ function loadStories() {
 }
 addParameters({
 	options: {
-		/**
-		 * name to display in the top left corner
-		 * @type {String}
-		 */
+		brandTitle: "Nutella",
 		name: "Nutella",
 		showDownPanel: false,
 		showAddonPanel: false,
