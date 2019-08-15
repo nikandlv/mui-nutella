@@ -22,7 +22,7 @@ import Nutella from "./Nutella";
 const cache = [];
 let counter = 0;
 let iconCache = "whatshot";
-export default class MyComponent extends React.Component {
+export default class NotificationBuilder extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

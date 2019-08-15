@@ -1,7 +1,7 @@
 {
-	"name": "the-package-name",
-	"main": "lib/MyComponent.js",
-	"module": "lib/MyComponent.es.js",
+	"name": "mui-nutella",
+	"main": "lib/NotificationBuilder.js",
+	"module": "lib/NotificationBuilder.es.js",
 	"scripts": {
 		"start": "npm-run-all build:rollup --parallel start:*",
 		"start:rollup": "rollup --config --sourcemap --watch",
@@ -19,6 +19,7 @@
 		"@material-ui/core": "^4.3.2",
 		"@material-ui/icons": "^4.2.1",
 		"@material-ui/styles": "^4.3.0",
+		"@storybook/addon-options": "^5.1.11",
 		"prop-types": "^15.6.2",
 		"react-color": "^2.17.3",
 		"react-mui-android-notification": "^2.0.1",
