@@ -15,8 +15,13 @@ const useStyles = makeStyles({
 		position: "fixed",
 		padding: "1rem",
 		transition: "all 1s",
-		overflow: "hidden",
+		overflow: "visible",
 		zIndex: 2000,
+		boxSizing: "border-box",
+		"@media( max-width: 500px )": {
+			width: "100%",
+			padding: "0rem",
+		},
 		"&.absolute": {
 			position: "absolute",
 		},
