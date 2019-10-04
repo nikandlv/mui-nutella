@@ -43,7 +43,7 @@ const notification = {};
 const position = "top-left";
 
 function pushMe() {
-  Nutella.push("my-notification-key", type, notification, actions, config);
+  Nutella.push("my-notification-key", [position, notification, actions, config]);
 }
 ```
 
