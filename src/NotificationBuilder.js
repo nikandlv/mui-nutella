@@ -17,7 +17,9 @@ import {
 } from "@material-ui/core";
 import { CirclePicker } from "react-color";
 import AndroidNotification from "react-mui-android-notification";
-import Nutella from "./Nutella";
+import InternalNutella from "./Nutella";
+
+export const Nutella = InternalNutella;
 
 const cache = [];
 let counter = 0;
@@ -75,7 +77,7 @@ export default class NotificationBuilder extends React.Component {
 
 	clear() {
 		cache.forEach(persistent => {
-			Nutella.dismiss(persistent);
+			InternalNutella.dismiss(persistent);
 		});
 	}
 
@@ -83,7 +85,12 @@ export default class NotificationBuilder extends React.Component {
 		counter += 1;
 		const { type, config } = this.state;
 		cache.push(
-			Nutella.push(`key-${counter}`, type, this.state, [<Button>Inject test!</Button>], config),
+			InternalNutella.push(`key-${counter}`, {
+				postition: type,
+				notification: this.state,
+				actions: [<Button>Inject test!</Button>],
+				config,
+			}),
 		);
 	}
 
@@ -312,7 +319,7 @@ export default class NotificationBuilder extends React.Component {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Nutella.View variant={absolute ? "absolute" : "fixed"} />
+				<InternalNutella.View variant={absolute ? "absolute" : "fixed"} />
 			</Grid>
 		);
 	}
