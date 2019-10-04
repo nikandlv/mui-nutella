@@ -1,6 +1,6 @@
 {
 	"name": "mui-nutella",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "Nutella is a notification system",
 	"keywords": [
 		"nutella",
@@ -13,7 +13,7 @@
 	"repository": "https://github.com/nikandlv/mui-nutella.git",
 	"author": "Nikan Dalvand <nikandalvand@gmail.com>",
 	"main": "lib/Nutella.js",
-	"module": "lib/NotificationBuilder.js",
+	"module": "lib/Nutella.js",
 	"homepage": "http://nikandlv.github.io/mui-nutella",
 	"scripts": {
 		"start": "npm-run-all build:rollup --parallel start:*",
