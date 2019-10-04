@@ -96,11 +96,15 @@ function NutellaSection(props) {
 						variant={item.notification.variant}
 						className={styles.notification}
 					>
-						<AndroidNotification className="test" {...item.notification}>
-							{item.actions.map((action, key) => (
-								<React.Fragment key={key}>{action}</React.Fragment>
-							))}
-						</AndroidNotification>
+						{item.actions.length === 0 ? (
+							<AndroidNotification className="test" {...item.notification} />
+						) : (
+							<AndroidNotification className="test" {...item.notification}>
+								{item.actions.map((action, key) => (
+									<React.Fragment key={key}>{action}</React.Fragment>
+								))}
+							</AndroidNotification>
+						)}
 					</FadeTransition>
 				);
 			})}
@@ -141,7 +145,7 @@ const Interface = {
 			actions,
 		};
 		Update();
-		if (typeof config === "undefined") {
+		if (typeof inputConfig === "undefined") {
 			config = {
 				persistent: false,
 				timeOut: 5000,
