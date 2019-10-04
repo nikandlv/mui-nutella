@@ -91,8 +91,12 @@ function NutellaSection(props) {
 			{items.map(index => {
 				let item = Nutella[index];
 				return (
-					<FadeTransition key={index} variant={item.data.variant} className={styles.notification}>
-						<AndroidNotification className="test" {...item.data}>
+					<FadeTransition
+						key={index}
+						variant={item.notification.variant}
+						className={styles.notification}
+					>
+						<AndroidNotification className="test" {...item.notification}>
 							{item.actions.map((action, key) => (
 								<React.Fragment key={key}>{action}</React.Fragment>
 							))}
@@ -125,10 +129,15 @@ class View extends React.Component {
 }
 
 const Interface = {
-	push: (index, position, data, actions, config) => {
+	push: (index, input) => {
+		const position = input.position || "bottom-left";
+		const notification = input.notification || {};
+		const actions = input.actions || [];
+		const inputConfig = input.config;
+		let config = {};
 		Nutella[index] = {
 			position,
-			data,
+			notification,
 			actions,
 		};
 		Update();
@@ -137,6 +146,8 @@ const Interface = {
 				persistent: false,
 				timeOut: 5000,
 			};
+		} else {
+			config = inputConfig;
 		}
 		if (!config.persistent) {
 			window.setTimeout(() => {
